@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} son los tipos para el intellisense de tailwind*/
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mono: ['var(--font-roboto)'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
