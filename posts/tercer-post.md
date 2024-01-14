@@ -13,6 +13,10 @@ description: 'mi tercer post'
 
 ## Why
 
+$$
+x + y = 3m
+$$
+
 Copying text to the clipboard shouldn't be hard. It shouldn't require dozens of steps to configure or hundreds of KBs to load. But most of all, it shouldn't depend on Flash or any bloated framework.
 
 That's why clipboard.js exists.
