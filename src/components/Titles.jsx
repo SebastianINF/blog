@@ -14,7 +14,7 @@ export function H1({ children, id }) {
   return (
     <div className='flex flex-col justify-center' >
       <h1
-        className='flex items-center'
+        className='flex items-center text-3xl font-bold py-5'
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         id={id}
@@ -39,7 +39,7 @@ export function H2({ children, id }) {
   return (
     <div className='flex flex-col justify-center' >
       <h2
-        className='flex items-center'
+        className='flex items-center text-2xl font-bold py-3'
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         id={id}
@@ -64,7 +64,7 @@ export function H3({ children, id }) {
   return (
     <div className='flex flex-col justify-center' >
       <h3
-        className='flex items-center'
+        className='flex items-center text-xl font-bold py-3'
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         id={id}

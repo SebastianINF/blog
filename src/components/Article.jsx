@@ -29,8 +29,8 @@ export default function Article({content}) {
           const match = /language-(\w+)/.exec(className || '')
 
           return match ? (
-            <div style={{ position: 'relative' }} key={uuiv4()}>
-              <div style={{ position: 'absolute', top: '2px', right: '2px' }}>
+            <div className='relative my-4' key={uuiv4()}>
+              <div className='absolute top-1 right-1'>
                 <ClipBoardButton code={node.children[0].value} />
               </div>
               <SyntaxHighlighter
@@ -70,7 +70,15 @@ export default function Article({content}) {
               checked={checked}
             ></input>
           )
-        }
+        },
+        summary: function ({children}) {
+
+          return (
+            <summary className='hover:text-orange-600 cursor-pointer select-none text-white' >
+              {children}
+            </summary>
+          )
+        } 
       }}
     />
   )

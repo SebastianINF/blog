@@ -1,6 +1,8 @@
 ---
-title: 'tercer post'
+title: 'Tercer post'
 description: 'mi tercer post'
+image: 'javascript'
+fecha: '13/1/2024'
 ---
 # clipboard.js
 

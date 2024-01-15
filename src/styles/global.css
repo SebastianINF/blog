@@ -20,26 +20,18 @@ body {
   margin: 0;
 }
 
+p {
+  @apply my-3 text-lg text-white
+}
+
 /* styles */
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  @apply text-blue-500 hover:text-orange-600 transition-colors
 }
 
-a:hover {
-  color: orange;
-  transition: all 0.3s ease-out;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out;
-  transition-delay: 0s;
-  transition-property: all;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold
 }
-
 
 .main {
   width: min-content;
@@ -66,6 +58,7 @@ a:hover {
 .svg-clipboard {
   fill: rgb(146, 146, 146);
   z-index: 2;
+  padding: 2px;
 }
 
 .svg-clipboard-container:hover {
@@ -83,12 +76,19 @@ a:hover {
 }
 
 code:not([class]):not([id]) {
-  background-color: rgba(246, 229, 229, 0.043);
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
+  background-color: #96969633;
+  cursor:pointer;
+  color: #26d1eb;
+  padding: 2px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+code:not([class]):not([id]):hover{
+ --tw-text-opacity: 1;
+  color: rgb(234 88 12 / var(--tw-text-opacity));
 }
 
 span {
@@ -97,6 +97,7 @@ span {
   -webkit-font-feature-settings: 'liga' 1;
   -moz-font-feature-settings: 'liga' 1;
 }
+
 
 blockquote {
   padding: 0.5rem 1.5rem;
@@ -111,28 +112,6 @@ blockquote {
   -o-border-radius: 4px;
 }
 
-h1{
-  font-size: 30px;
-  font-weight: 400;
-}
-
-h2{
-  font-size: 25px;
-  font-weight: 400;
-}
-h3{
-  font-size: 20px;
-  font-weight: 400;
-}
-h4{
-  font-size: 15px;
-  font-weight: 400;
-}
-h5{
-  font-size: 10px;
-  font-weight: 400;
-}
-
-blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
-    margin: 8px;
+blockquote, dl, dd, hr, figure, p, pre {
+  margin: 8px;
 }

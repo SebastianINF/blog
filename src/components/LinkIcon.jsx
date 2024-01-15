@@ -2,7 +2,7 @@
 export default function LinkIcon() {
   
   return (
-    <a className="svg-link-container">
+    <a className="svg-link-container ml-3">
       <svg
         className='svg-link'
         height='18'

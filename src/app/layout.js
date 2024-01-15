@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google'
+import { Inter , Montserrat } from 'next/font/google'
 import '@/styles/global.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -8,6 +8,13 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter' // <-- variable que se puede usar luego en el css
 })
+
+const montserrat = Montserrat({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-montserrat' // <-- variable que se puede usar luego en el css
+})
+
 
 /**
  * configuracion de la metadata
@@ -27,12 +34,12 @@ export default function RootLayout({ children }) {
   
   return (
     <html lang='en'>
-      <body className={`${inter.variable} font-inter`}>
+      <body className={`${inter.variable} ${montserrat.variable} font-montserrat dark`}>
         <header>
           <Navbar />
         </header>
         <main className='w-[48rem]'>{children}</main>
-       <footer className='w-screen h-min'>
+       <footer className='w-screen m-0 flex flex-col min-h-[100vh]'>
         <Footer />
       </footer> 
       </body>
