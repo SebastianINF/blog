@@ -42,6 +42,10 @@ code:not([class]):not([id]) {
   @apply bg-[#96969633] cursor-pointer text-[#26d1eb] p-[2px] rounded-[6px] hover:text-opacity-100 hover:text-purple-400 dark:text-amber-400 dark:hover:text-purple-700;
 }
 
+summary {
+  @apply dark:text-amber-400 hover:text-purple-500
+}
+
 span {
   @apply font-cascadia;
 }
@@ -50,7 +54,6 @@ span {
   -webkit-font-feature-settings: 'liga' 1;
   -moz-font-feature-settings: 'liga' 1;
 }
-
 blockquote {
   padding: 0.5rem 1.5rem;
   border-left: 2px solid white;
