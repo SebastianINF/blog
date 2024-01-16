@@ -9,7 +9,7 @@ export default function ClipBoardButton({ code }) {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    },2000)
+    }, 2000)
   }
 
   useEffect(() => {
@@ -28,7 +28,10 @@ export default function ClipBoardButton({ code }) {
   }, [buttonRef, code])
 
   return loading ? (
-    <button className='z-10 hover:bg-custom-black flex justify-center items-center border-none p-[1px] cursor-pointer rounded dark:text-white text-white' ref={buttonRef}>
+    <button
+      className='z-10 hover:bg-custom-black flex justify-center items-center border-none p-[1px] cursor-pointer rounded dark:text-white text-white'
+      ref={buttonRef}
+    >
       <svg
         xmlns='http://www.w3.org/2000/svg'
         className='icon icon-tabler icon-tabler-check'
@@ -43,7 +46,11 @@ export default function ClipBoardButton({ code }) {
       </svg>
     </button>
   ) : (
-    <button className='z-10 hover:bg-custom-black flex justify-center items-center border-none p-[3px] cursor-pointer rounded' ref={buttonRef} onClick={handleClick}>
+    <button
+      className='z-10 hover:bg-custom-black flex justify-center items-center border-none p-[3px] cursor-pointer rounded'
+      ref={buttonRef}
+      onClick={handleClick}
+    >
       <svg
         className='z-20 flex items-center justify-center w-[20px] h-[20px] fill-slate-300'
         aria-hidden='true'

@@ -1,8 +1,6 @@
-
 export default function LinkIcon() {
-  
   return (
-    <a className="ml-3 fill-white stroke-none w-[20px] h-[20px] pr-[2px] cursor-pointer z-30">
+    <a className='ml-3 fill-white stroke-none w-[20px] h-[20px] pr-[2px] cursor-pointer z-30'>
       <svg
         className='fill-white stroke-none w-[20px] h-[20px] pr-[2px] cursor-pointer z-30'
         height='18'

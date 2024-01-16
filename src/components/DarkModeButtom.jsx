@@ -13,7 +13,7 @@ export default function DarkModeButtom() {
     } else {
       document.querySelector('html').classList.remove('dark')
     }
-  })
+  },[theme])
 
   const handleChangeTheme = () => {
     setTheme(previo => (previo === 'light' ? 'dark' : 'light'))

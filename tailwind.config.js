@@ -5,7 +5,7 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
-  darkMode : 'class',
+  darkMode: 'class',
   theme: {
     screens: {
       '2xl': { max: '1535px' },
@@ -29,8 +29,10 @@ module.exports = {
       },
       fontFamily: {
         inter: ['var(--font-inter)'],
-        montserrat: ['var(--font-montserrat)']
+        montserrat: ['var(--font-montserrat)'],
+        cascadia: ['Cascadia Code']
       },
+
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

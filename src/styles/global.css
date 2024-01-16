@@ -8,55 +8,48 @@
 }
 
 * {
-  @apply box-border p-0 m-0 font-inter
+  @apply box-border p-0 m-0 font-inter;
 }
 
 html {
-  @apply scroll-p-[100px] scroll-smooth overflow-y-scroll
+  @apply scroll-p-[100px] scroll-smooth overflow-y-scroll;
 }
 
 body {
-  @apply w-dvw h-dvh items-center dark:text-white dark:bg-custom-black
+  @apply w-dvw h-dvh items-center dark:text-white dark:bg-custom-black;
 }
 
 p {
-  @apply my-3 text-lg dark:text-white text-pretty
+  @apply my-3 text-lg dark:text-white text-pretty;
 }
 
 /* styles */
 a {
-  @apply text-blue-500 dark:hover:text-white transition-colors
+  @apply text-blue-500 dark:hover:text-white transition-colors hover:text-amber-600;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply font-bold text-balance mt-5 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold text-balance mt-5;
 }
 
 /* TODO: pasar estas propiedades a tailwind */
-
 code:not([class]):not([id]) {
-  background-color: #96969633;
-  cursor:pointer;
-  color: #26d1eb;
-  padding: 2px;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
-}
-code:not([class]):not([id]):hover{
- --tw-text-opacity: 1;
-  color: greenyellow;
+  @apply bg-[#96969633] cursor-pointer text-[#26d1eb] p-[2px] rounded-[6px] hover:text-opacity-100 hover:text-purple-400 dark:text-amber-400 dark:hover:text-purple-700;
 }
 
 span {
-  font-family: 'Cascadia Code';
+  @apply font-cascadia;
+}
+span {
   font-feature-settings: 'liga' 1;
   -webkit-font-feature-settings: 'liga' 1;
   -moz-font-feature-settings: 'liga' 1;
 }
-
 
 blockquote {
   padding: 0.5rem 1.5rem;
@@ -70,6 +63,10 @@ blockquote {
   -o-border-radius: 4px;
 }
 
-blockquote, dl, dd, hr, figure pre {
+blockquote,
+dl,
+dd,
+hr,
+figure pre {
   margin: 18px 0;
 }

@@ -15,10 +15,9 @@ import { H1, H2, H3 } from '@/components/Titles'
 import 'katex/dist/katex.min.css'
 import '@/styles/global.css'
 
-export default function Article({content}) {
-
+export default function Article({ content }) {
   return (
-     <Markdown
+    <Markdown
       children={content}
       remarkPlugins={[remarkGfm, remarkMath, remarkToc, remarkSlug]}
       rehypePlugins={[rehypeRaw, rehypeKatex, rehypeSlug]}
@@ -30,7 +29,7 @@ export default function Article({content}) {
 
           return match ? (
             <div className='relative my-4' key={uuiv4()}>
-              <div className='absolute top-1 right-1'>
+              <div className='absolute top-1 right-1 -z-0'>
                 <ClipBoardButton code={node.children[0].value} />
               </div>
               <SyntaxHighlighter
@@ -46,7 +45,7 @@ export default function Article({content}) {
               {children}
             </code>
           )
-        },
+        }
       }}
     />
   )

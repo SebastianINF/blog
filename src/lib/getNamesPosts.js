@@ -12,7 +12,7 @@ const getNamesPosts = async () => {
     params: { posts: path.basename(file, '.md') }
   }))
 
-  return names 
+  return names
 }
 
 export default getNamesPosts

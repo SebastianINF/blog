@@ -23,8 +23,11 @@ export default function Navbar() {
           <GithubIcon />
           <DarkModeButtom />
           <li className='px-4'>
-            <Link href='/' className='cursor-pointer dark:hover:text-white hover:text-white'>
-              Home
+            <Link
+              href='/'
+              className='cursor-pointer dark:hover:text-white hover:text-white'
+            >
+              Layout
             </Link>
           </li>
         </ul>
