@@ -20,10 +20,10 @@ const montserrat = Montserrat({
  * https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadata-fields
  */
 export const metadata = {
-  title: 'My next app',
+  title: 'My blog',
   description:
-    'Proyecto para entender next js para usarlo en mis proximos proyectos',
-  authors: [{ name: 'Sebastian' }, { name: 'Josh', url: 'https://nextjs.org' }], // varios autores
+    'My personal blog make for me',
+  authors: [{ name: 'Sebastian' }], // varios autores
   creator: 'Sebastian Cespedes Rodas',
   publisher: 'Sebastian'
 }
@@ -32,6 +32,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
+      <head>
+        <link rel="icon" href="/perfil.png" sizes="any"/>
+      </head>
       <body
         className={`${inter.variable} ${montserrat.variable} font-montserrat`}
       >
