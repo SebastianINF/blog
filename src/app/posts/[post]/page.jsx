@@ -9,7 +9,7 @@ export default async function PostPage({ params }) {
     <>
       <div className='flex py-5 items-center'>
         <Image src={`/${data.image}.png`} width={40} height={40} alt={`image of ${data.image}`} />
-        <h1 className='font-bold text-3xl ml-3'>{data.title}</h1>
+        <h1 className='font-bold text-3xl ml-3 my-0'>{data.title}</h1>
       </div>
         <p className='text-xl m-0'>{data.description}</p>
         <span className='text-sm font-montserrat'>{data.fecha}</span>

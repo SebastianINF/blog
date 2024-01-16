@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Navbar() {
   return (
-    <nav className='bg-slate-800 w-svw sticky'>
+    <nav className='bg-slate-800 w-svw fixed top-0 right-0 left-0 z-10'>
       <div className='bg-blue-30 flex justify-between items-center mr-auto ml-auto max-w-5xl py-3'>
         <section className='flex items-center px-4 justify-center'>
           <Link href='/'>
@@ -16,7 +16,7 @@ export default function Navbar() {
             />
           </Link>
         </section>
-        <ul className='flex justify-between items-center'>
+        <ul className='flex justify-between items-center mx-4'>
           <li className='px-4'>
             <Link href='/' className='cursor-pointer hover:text-orange-600'>
               Home

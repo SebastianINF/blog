@@ -78,7 +78,13 @@ export default function Article({content}) {
               {children}
             </summary>
           )
-        } 
+        } ,
+        p: function ({children}) {
+          
+          return (
+            <p className='max-w-[45rem]'>{children}</p>
+          )
+        }
       }}
     />
   )

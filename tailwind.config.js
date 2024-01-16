@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors : {
+        'custom-black' : '#242424'
+      },
       fontFamily: {
         inter: ['var(--font-inter)'],
         montserrat: ['var(--font-montserrat)']

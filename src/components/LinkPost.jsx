@@ -23,7 +23,7 @@ export default async function LinkPost({ postUrl, title }) {
           <span className='text-xs font-montserrat'>{data.data.fecha}</span>
         </div>
       </div>
-      <span>{data.data.description}</span>
+      <span className='font-inter'>{data.data.description}</span>
     </Link>
   )
 }
