@@ -7,7 +7,7 @@ export default async function Home() {
   
   return (
     <>
-      <h1 className="bold fonto-bold m-0 text-5xl py-5">Blog</h1>
+      <h1 className="fonto-bold m-0 text-5xl py-5">Blog</h1>
       <p className="text-xl py-4">
         Aquí te comparto mis notas sobre temas de desarrollo web: artículos,
         tutoriales, teoría, fragmentos de código, presentaciones y uno que otro

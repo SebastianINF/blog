@@ -47,44 +47,6 @@ export default function Article({content}) {
             </code>
           )
         },
-        // eslint-disable-next-line no-unused-vars
-        h1: function ({ children, id }) {
-          return <H1 children={children} id={id} />
-        },
-        // eslint-disable-next-line no-unused-vars
-        h2: function ({ children, id }) {
-          return <H2 children={children} id={id} />
-        },
-        // eslint-disable-next-line no-unused-vars
-        h3: function ({ children, id }) {
-          return <H3 children={children} id={id} />
-        },
-        input: function ({ checked, type }) {
-          if (!checked) checked = false
-
-          return (
-            <input
-              readOnly
-              disabled={false}
-              type={type}
-              checked={checked}
-            ></input>
-          )
-        },
-        summary: function ({children}) {
-
-          return (
-            <summary className='hover:text-orange-600 cursor-pointer select-none text-white' >
-              {children}
-            </summary>
-          )
-        } ,
-        p: function ({children}) {
-          
-          return (
-            <p className='max-w-[45rem]'>{children}</p>
-          )
-        }
       }}
     />
   )

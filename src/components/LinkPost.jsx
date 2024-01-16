@@ -8,7 +8,7 @@ export default async function LinkPost({ postUrl, title }) {
   return (
     <Link
       href={`posts/${postUrl}`}
-      className='px-2 border-b-blue-600 border-b-2 w-full flex items-center py-3 justify-between hover:bg-slate-800 bg-transparent'
+      className='px-2 border-b-blue-600 border-b-2 w-full flex items-center py-3 justify-between dark:hover:bg-slate-800 dark:bg-transparent'
     >
       <div className='flex items-center'>
         <Image
@@ -23,7 +23,6 @@ export default async function LinkPost({ postUrl, title }) {
           <span className='text-xs font-montserrat'>{data.data.fecha}</span>
         </div>
       </div>
-      <span className='font-inter'>{data.data.description}</span>
     </Link>
   )
 }

@@ -2,9 +2,9 @@
 export default function LinkIcon() {
   
   return (
-    <a className="svg-link-container ml-3">
+    <a className="ml-3 fill-white stroke-none w-[20px] h-[20px] pr-[2px] cursor-pointer z-30">
       <svg
-        className='svg-link'
+        className='fill-white stroke-none w-[20px] h-[20px] pr-[2px] cursor-pointer z-30'
         height='18'
         viewBox='0 0 16 16'
         width='18'

@@ -12,62 +12,27 @@
 }
 
 html {
-  @apply scroll-p-[100px] scroll-smooth overflow-y-scroll w-max
+  @apply scroll-p-[100px] scroll-smooth overflow-y-scroll
 }
 
 body {
-  @apply flex flex-col w-dvw h-dvh items-center text-white bg-custom-black
+  @apply w-dvw h-dvh items-center dark:text-white dark:bg-custom-black
 }
 
 p {
-  @apply my-3 text-lg text-white mx-auto text-pretty
+  @apply my-3 text-lg dark:text-white text-pretty
 }
 
 /* styles */
 a {
-  @apply text-blue-500 hover:text-orange-600 transition-colors 
+  @apply text-blue-500 dark:hover:text-white transition-colors 
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-bold text-balance mt-5
+  @apply font-bold text-balance mt-5 
 }
 
-.svg-clipboard-container {
-  background-color: rgb(40, 44, 52);
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  padding: 3px;
-  cursor: pointer;
-  box-sizing: border-box;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-}
-
-.svg-clipboard {
-  fill: rgb(146, 146, 146);
-  z-index: 2;
-  padding: 2px;
-}
-
-.svg-clipboard-container:hover {
-  background-color: rgba(240, 240, 240, 0.137);
-}
-
-.svg-link {
-  fill: white;
-  stroke: none;
-  width: 20px;
-  height: 20px;
-  padding-right: 2px;
-  cursor: pointer;
-  z-index: 10;
-}
+/* TODO: pasar estas propiedades a tailwind */
 
 code:not([class]):not([id]) {
   background-color: #96969633;
@@ -82,7 +47,7 @@ code:not([class]):not([id]) {
 }
 code:not([class]):not([id]):hover{
  --tw-text-opacity: 1;
-  color: rgb(234 88 12 / var(--tw-text-opacity));
+  color: greenyellow;
 }
 
 span {
@@ -95,7 +60,7 @@ span {
 
 blockquote {
   padding: 0.5rem 1.5rem;
-  border-left: 2px solid orange;
+  border-left: 2px solid white;
   opacity: 0.75;
   border-radius: 4px;
   background-color: #364a5b35;
@@ -106,5 +71,5 @@ blockquote {
 }
 
 blockquote, dl, dd, hr, figure pre {
-  margin: 8px;
+  margin: 18px 0;
 }

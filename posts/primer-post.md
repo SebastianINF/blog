@@ -1,6 +1,6 @@
 ---
-title: 'Primer Post'
-description: 'Descripción del primer post'
+title: 'Top 5 preguntas de JavaScript en Stack Overflow'
+description: 'Como aprender a desarrollar una aplicación desde cero usando React y React-dom'
 image: 'javascript'
 fecha: '13/1/2024'
 ---

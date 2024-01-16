@@ -34,11 +34,11 @@ export default function RootLayout({ children }) {
   
   return (
     <html lang='en'>
-      <body className={`${inter.variable} ${montserrat.variable} font-montserrat dark`}>
+      <body className={`${inter.variable} ${montserrat.variable} font-montserrat`}>
         <header className='relative mt-32'>
           <Navbar />
         </header>
-        <main className='max-w-[48rem] mx-auto px-5'><div>{children}</div></main>
+        <main className='max-w-[48rem] mx-auto px-5'>{children}</main>
        <footer className='w-screen m-0 flex flex-col min-h-[100vh]'>
         <Footer />
       </footer> 

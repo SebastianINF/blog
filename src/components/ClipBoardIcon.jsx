@@ -28,7 +28,7 @@ export default function ClipBoardButton({ code }) {
   }, [buttonRef, code])
 
   return loading ? (
-    <button className='svg-clipboard-container' ref={buttonRef}>
+    <button className='z-10 hover:bg-custom-black flex justify-center items-center border-none p-[1px] cursor-pointer rounde' ref={buttonRef}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         className='icon icon-tabler icon-tabler-check'
@@ -43,14 +43,14 @@ export default function ClipBoardButton({ code }) {
       </svg>
     </button>
   ) : (
-    <button className='svg-clipboard-container' ref={buttonRef} onClick={handleClick}>
+    <button className='z-10 hover:bg-custom-black flex justify-center items-center border-none p-[3px] cursor-pointer rounded ' ref={buttonRef} onClick={handleClick}>
       <svg
-        className='svg-clipboard'
+        className='z-20 flex items-center justify-center w-[20px] h-[20px] fill-slate-300'
         aria-hidden='true'
-        height='19'
+        height='24'
         viewBox='0 0 16 16'
         version='1.1'
-        width='19'
+        width='24'
         data-view-component='true'
       >
         <path d='M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z'></path>
