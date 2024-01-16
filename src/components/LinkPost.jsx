@@ -8,7 +8,7 @@ export default async function LinkPost({ postUrl, title }) {
   return (
     <Link
       href={`posts/${postUrl}`}
-      className='px-2 border-b-blue-600 border-b-2 w-full flex items-center py-3 justify-between dark:hover:bg-slate-800 dark:bg-transparent'
+      className='px-2 dark:border-b-blue-600 border-b-2 w-full flex items-center py-3 justify-between dark:hover:bg-slate-800 dark:bg-transparent dark:hover:text-white dark:text-blue-600 border-zinc-800 text-black hover:text-blue-600 hover:border-b-blue-600'
     >
       <div className='flex items-center'>
         <Image

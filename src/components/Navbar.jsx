@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import DarkModeButtom from './DarkModeButtom'
+import { IconContext } from 'react-icons'
+import GithubIcon from './GithubIcon'
 
 export default function Navbar() {
   return (
@@ -18,26 +20,11 @@ export default function Navbar() {
           </Link>
         </section>
         <ul className='flex justify-between items-center mx-4'>
+          <GithubIcon />
           <DarkModeButtom />
           <li className='px-4'>
-            <Link href='/' className='cursor-pointer dark:hover:text-white'>
+            <Link href='/' className='cursor-pointer dark:hover:text-white hover:text-white'>
               Home
-            </Link>
-          </li>
-          <li className='px-4'>
-            <Link
-              href='/about'
-              className='cursor-pointer  dark:hover:text-white'
-            >
-              About
-            </Link>
-          </li>
-          <li className='px-4'>
-            <Link
-              href='/contact'
-              className='cursor-pointe dark:hover:text-white'
-            >
-              Contact
             </Link>
           </li>
         </ul>

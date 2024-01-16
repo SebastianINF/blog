@@ -19,7 +19,7 @@ export default function DarkModeButtom() {
     setTheme(previo => (previo === 'light' ? 'dark' : 'light'))
   }
   return (
-    <button onClick={handleChangeTheme} className='pt-1 px-1'>
+    <button onClick={handleChangeTheme} className='text-white ml-2'>
       {theme === 'light' ? <SvgMoon /> : <SvgSun />}
     </button>
   )

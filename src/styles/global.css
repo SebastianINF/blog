@@ -25,7 +25,7 @@ p {
 
 /* styles */
 a {
-  @apply text-blue-500 dark:hover:text-white transition-colors 
+  @apply text-blue-500 dark:hover:text-white transition-colors
 }
 
 h1, h2, h3, h4, h5, h6 {
