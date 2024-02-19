@@ -5,205 +5,121 @@ image: 'javascript'
 fecha: '13/1/2024'
 ---
 
-# clipboard.js
+# A demo of `react-markdown`
 
-![Build Status](https://github.com/zenorocha/clipboard.js/workflows/build/badge.svg)
-![Killing Flash](https://img.shields.io/badge/killing-flash-brightgreen.svg?style=flat)
+`react-markdown` is a markdown component for React.
 
-> Modern copy to clipboard. No Flash. Just 3kb gzipped.
+👉 Changes are re-rendered as you type.
 
-<a href="https://clipboardjs.com/"><img width="728" src="https://cloud.githubusercontent.com/assets/398893/16165747/a0f6fc46-349a-11e6-8c9b-c5fd58d9099c.png" alt="Demo"></a>
+👈 Try writing some markdown on the left.
 
-## Why
+## Overview
 
-$$
-x + y = 3m
-$$
+* Follows [CommonMark](https://commonmark.org)
+* Optionally follows [GitHub Flavored Markdown](https://github.github.com/gfm/)
+* Renders actual React elements instead of using `dangerouslySetInnerHTML`
+* Lets you define your own components (to render `MyHeading` instead of `'h1'`)
+* Has a lot of plugins
 
-Copying text to the clipboard shouldn't be hard. It shouldn't require dozens of steps to configure or hundreds of KBs to load. But most of all, it shouldn't depend on Flash or any bloated framework.
+## Contents
 
-That's why clipboard.js exists.
+Here is an example of a plugin in action
+([`remark-toc`](https://github.com/remarkjs/remark-toc)).
+**This section is replaced by an actual table of contents**.
 
-```javascript
-const suma = (a,b) => {
-  return a + b
-}
-sumar(3,3)
-```
-## Install
+## Syntax highlighting
 
-You can get it on npm.
-
-```
-npm install clipboard --save
-```
-
-Or if you're not into package management, just [download a ZIP](https://github.com/zenorocha/clipboard.js/archive/master.zip) file.
-
-## Setup
-
-First, include the script located on the `dist` folder or load it from [a third-party CDN provider](https://github.com/zenorocha/clipboard.js/wiki/CDN-Providers).
-
-```html
-<script src="dist/clipboard.min.js"></script>
-```
-
-Now, you need to instantiate it by [passing a DOM selector](https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-selector.html#L18), [HTML element](https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-node.html#L16-L17), or [list of HTML elements](https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-nodelist.html#L18-L19).
+Here is an example of a plugin to highlight code:
+[`rehype-highlight`](https://github.com/rehypejs/rehype-highlight).
 
 ```js
-new ClipboardJS('.btn');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Markdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
+
+const markdown = `
+# Your markdown here
+`
+
+ReactDOM.render(
+  <Markdown rehypePlugins={[rehypeHighlight]}>{markdown}</Markdown>,
+  document.querySelector('#content')
+)
 ```
 
-Internally, we need to fetch all elements that matches with your selector and attach event listeners for each one. But guess what? If you have hundreds of matches, this operation can consume a lot of memory.
+Pretty neat, eh?
 
-For this reason we use [event delegation](https://stackoverflow.com/questions/1687296/what-is-dom-event-delegation) which replaces multiple event listeners with just a single listener. After all, [#perfmatters](https://twitter.com/hashtag/perfmatters).
+## GitHub flavored markdown (GFM)
 
-# Usage
+For GFM, you can *also* use a plugin:
+[`remark-gfm`](https://github.com/remarkjs/react-markdown#use).
+It adds support for GitHub-specific extensions to the language:
+tables, strikethrough, tasklists, and literal URLs.
 
-We're living a _declarative renaissance_, that's why we decided to take advantage of [HTML5 data attributes](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes) for better usability.
+These features **do not work by default**.
+👆 Use the toggle above to add the plugin.
 
-### Copy text from another element
+| Feature    | Support              |
+| ---------: | :------------------- |
+| CommonMark | 100%                 |
+| GFM        | 100% w/ `remark-gfm` |
 
-A pretty common use case is to copy content from another element. You can do that by adding a `data-clipboard-target` attribute in your trigger element.
+~~strikethrough~~
 
-The value you include on this attribute needs to match another's element selector.
+* [ ] task list
+* [x] checked item
 
-<a href="https://clipboardjs.com/#example-target"><img width="473" alt="example-2" src="https://cloud.githubusercontent.com/assets/398893/9983467/a4946aaa-5fb1-11e5-9780-f09fcd7ca6c8.png"></a>
+<https://example.com>
 
-```html
-<!-- Target -->
-<input id="foo" value="https://github.com/zenorocha/clipboard.js.git" />
+## HTML in markdown
 
-<!-- Trigger -->
-<button class="btn" data-clipboard-target="#foo">
-  <img src="assets/clippy.svg" alt="Copy to clipboard" />
-</button>
-```
+⚠️ HTML in markdown is quite unsafe, but if you want to support it, you can
+use [`rehype-raw`](https://github.com/rehypejs/rehype-raw).
+You should probably combine it with
+[`rehype-sanitize`](https://github.com/rehypejs/rehype-sanitize).
 
-### Cut text from another element
+<blockquote>
+  👆 Use the toggle above to add the plugin.
+</blockquote>
 
-Additionally, you can define a `data-clipboard-action` attribute to specify if you want to either `copy` or `cut` content.
+## Components
 
-If you omit this attribute, `copy` will be used by default.
-
-<a href="https://clipboardjs.com/#example-action"><img width="473" alt="example-3" src="https://cloud.githubusercontent.com/assets/398893/10000358/7df57b9c-6050-11e5-9cd1-fbc51d2fd0a7.png"></a>
-
-```html
-<!-- Target -->
-<textarea id="bar">Mussum ipsum cacilds...</textarea>
-
-<!-- Trigger -->
-<button class="btn" data-clipboard-action="cut" data-clipboard-target="#bar">
-  Cut to clipboard
-</button>
-```
-
-As you may expect, the `cut` action only works on `<input>` or `<textarea>` elements.
-
-### Copy text from attribute
-
-Truth is, you don't even need another element to copy its content from. You can just include a `data-clipboard-text` attribute in your trigger element.
-
-<a href="https://clipboardjs.com/#example-text"><img width="147" alt="example-1" src="https://cloud.githubusercontent.com/assets/398893/10000347/6e16cf8c-6050-11e5-9883-1c5681f9ec45.png"></a>
-
-```html
-<!-- Trigger -->
-<button
-  class="btn"
-  data-clipboard-text="Just because you can doesn't mean you should — clipboard.js"
->
-  Copy to clipboard
-</button>
-```
-
-## Events
-
-There are cases where you'd like to show some user feedback or capture what has been selected after a copy/cut operation.
-
-That's why we fire custom events such as `success` and `error` for you to listen and implement your custom logic.
+You can pass components to change things:
 
 ```js
-var clipboard = new ClipboardJS('.btn');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Markdown from 'react-markdown'
+import MyFancyRule from './components/my-fancy-rule.js'
 
-clipboard.on('success', function (e) {
-  console.info('Action:', e.action);
-  console.info('Text:', e.text);
-  console.info('Trigger:', e.trigger);
+const markdown = `
+# Your markdown here
+`
 
-  e.clearSelection();
-});
-
-clipboard.on('error', function (e) {
-  console.error('Action:', e.action);
-  console.error('Trigger:', e.trigger);
-});
+ReactDOM.render(
+  <Markdown
+    components={{
+      // Use h2s instead of h1s
+      h1: 'h2',
+      // Use a component instead of hrs
+      hr(props) {
+        const {node, ...rest} = props
+        return <MyFancyRule {...rest} />
+      }
+    }}
+  >
+    {markdown}
+  </Markdown>,
+  document.querySelector('#content')
+)
 ```
 
-For a live demonstration, go to this [site](https://clipboardjs.com/) and open your console.
+## More info?
 
-## Tooltips
+Much more info is available in the
+[readme on GitHub](https://github.com/remarkjs/react-markdown)!
 
-Each application has different design needs, that's why clipboard.js does not include any CSS or built-in tooltip solution.
+***
 
-The tooltips you see on the [demo site](https://clipboardjs.com/) were built using [GitHub's Primer](https://primer.style/css/components/tooltips). You may want to check that out if you're looking for a similar look and feel.
-
-## Advanced Options
-
-If you don't want to modify your HTML, there's a pretty handy imperative API for you to use. All you need to do is declare a function, do your thing, and return a value.
-
-For instance, if you want to dynamically set a `target`, you'll need to return a Node.
-
-```js
-new ClipboardJS('.btn', {
-  target: function (trigger) {
-    return trigger.nextElementSibling;
-  },
-});
-```
-
-If you want to dynamically set a `text`, you'll return a String.
-
-```js
-new ClipboardJS('.btn', {
-  text: function (trigger) {
-    return trigger.getAttribute('aria-label');
-  },
-});
-```
-
-For use in Bootstrap Modals or with any other library that changes the focus you'll want to set the focused element as the `container` value.
-
-```js
-new ClipboardJS('.btn', {
-  container: document.getElementById('modal'),
-});
-```
-
-Also, if you are working with single page apps, you may want to manage the lifecycle of the DOM more precisely. Here's how you clean up the events and objects that we create.
-
-```js
-var clipboard = new ClipboardJS('.btn');
-clipboard.destroy();
-```
-
-## Browser Support
-
-This library relies on both [Selection](https://developer.mozilla.org/en-US/docs/Web/API/Selection) and [execCommand](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand) APIs. The first one is [supported by all browsers](https://caniuse.com/#search=selection) while the second one is supported in the following browsers.
-
-| <img src="https://clipboardjs.com/assets/images/chrome.png" width="48px" height="48px" alt="Chrome logo"> | <img src="https://clipboardjs.com/assets/images/edge.png" width="48px" height="48px" alt="Edge logo"> | <img src="https://clipboardjs.com/assets/images/firefox.png" width="48px" height="48px" alt="Firefox logo"> | <img src="https://clipboardjs.com/assets/images/ie.png" width="48px" height="48px" alt="Internet Explorer logo"> | <img src="https://clipboardjs.com/assets/images/opera.png" width="48px" height="48px" alt="Opera logo"> | <img src="https://clipboardjs.com/assets/images/safari.png" width="48px" height="48px" alt="Safari logo"> |
-| :-------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
-|                                                   42+ ✔                                                   |                                                 12+ ✔                                                 |                                                    41+ ✔                                                    |                                                       9+ ✔                                                       |                                                  29+ ✔                                                  |                                                   10+ ✔                                                   |
-
-The good news is that clipboard.js gracefully degrades if you need to support older browsers. All you have to do is show a tooltip saying `Copied!` when `success` event is called and `Press Ctrl+C to copy` when `error` event is called because the text is already selected.
-
-You can also check if clipboard.js is supported or not by running `ClipboardJS.isSupported()`, that way you can hide copy/cut buttons from the UI.
-
-## Bonus
-
-A browser extension that adds a "copy to clipboard" button to every code block on _GitHub, MDN, Gist, StackOverflow, StackExchange, npm, and even Medium._
-
-Install for [Chrome](https://chrome.google.com/webstore/detail/codecopy/fkbfebkcoelajmhanocgppanfoojcdmg) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/codecopy/).
-
-## License
-
-[MIT License](https://zenorocha.mit-license.org/) © Zeno Rocha
+A component by [Espen Hovlandsdal](https://espen.codes/)

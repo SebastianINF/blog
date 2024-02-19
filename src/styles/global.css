@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Cascadia Code';
-  src: url('../../fonts/Cascadia\ Code.ttf') format('truetype');
-}
-
 * {
   @apply box-border p-0 m-0 font-inter;
 }
@@ -21,55 +16,4 @@ body {
 
 p {
   @apply my-3 text-lg dark:text-white text-pretty;
-}
-
-/* styles */
-a {
-  @apply text-blue-500 dark:hover:text-white transition-colors hover:text-amber-600;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-bold text-balance mt-5;
-}
-
-/* TODO: pasar estas propiedades a tailwind */
-code:not([class]):not([id]) {
-  @apply bg-[#96969633] cursor-pointer text-[#26d1eb] p-[2px] rounded-[6px] hover:text-opacity-100 hover:text-purple-400 dark:text-amber-400 dark:hover:text-purple-700;
-}
-
-summary {
-  @apply dark:text-amber-400 hover:text-purple-500 cursor-pointer
-}
-
-span {
-  @apply font-cascadia;
-}
-span {
-  font-feature-settings: 'liga' 1;
-  -webkit-font-feature-settings: 'liga' 1;
-  -moz-font-feature-settings: 'liga' 1;
-}
-blockquote {
-  padding: 0.5rem 1.5rem;
-  border-left: 2px solid white;
-  opacity: 0.75;
-  border-radius: 4px;
-  background-color: #364a5b35;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-}
-
-blockquote,
-dl,
-dd,
-hr,
-figure pre {
-  margin: 18px 0;
 }

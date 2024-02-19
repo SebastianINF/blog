@@ -15,7 +15,7 @@ export default async function LinkPost({ postUrl, title }) {
           className='mx-0'
           width={40}
           height={40}
-          src={`/${data.data.image}.png`}
+          src={`/images/${data.data.image}.png`}
           alt={`image of ${data.data.image}`}
         />
         <div className='ml-3'>

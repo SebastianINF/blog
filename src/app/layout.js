@@ -1,8 +1,7 @@
 import { Inter, Montserrat } from 'next/font/google'
-import '@/styles/global.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-
+import '@/styles/global.css'
 const inter = Inter({
   weight: '400',
   subsets: ['latin'],
@@ -33,7 +32,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>
-        <link rel="icon" href="/perfil.png" sizes="any"/>
+        <link rel="icon" href="/images/perfil.png" sizes="any"/>
       </head>
       <body
         className={`${inter.variable} ${montserrat.variable} font-montserrat`}

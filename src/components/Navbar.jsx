@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import DarkModeButtom from './DarkModeButtom'
-import { IconContext } from 'react-icons'
-import GithubIcon from './GithubIcon'
+import DarkModeButton from './DarkModeButton'
+import { GitHub } from './icons'
 
 export default function Navbar() {
   return (
@@ -11,17 +10,20 @@ export default function Navbar() {
         <section className='flex items-center px-4 justify-center h-full'>
           <Link href='/'>
             <Image
-              className='items-center cursor-pointer rounded-full w-[60px] h-[60px] sm:hidden'
               src='/perfil.png'
+              className='items-center cursor-pointer rounded-full w-[60px] h-[60px] sm:hidden'
               width={60}
               height={60}
+              quality={100}
               alt='image of perfil'
             />
           </Link>
         </section>
         <ul className='flex justify-between items-center mx-4'>
-          <GithubIcon />
-          <DarkModeButtom />
+          <a href='https://github.com/SebastianINF' target='_blank' rel='noreferrer'>
+            <GitHub />
+          </a>
+          <DarkModeButton />
           <li className='px-4'>
             <Link
               href='/'

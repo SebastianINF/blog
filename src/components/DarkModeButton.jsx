@@ -1,10 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import SvgMoon from './SvgMoon'
-import SvgSun from './SvgSun'
+import { Moon, Sun } from './icons'
 
-export default function DarkModeButtom() {
+export default function DarkModeButton() {
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {
@@ -13,14 +12,14 @@ export default function DarkModeButtom() {
     } else {
       document.querySelector('html').classList.remove('dark')
     }
-  },[theme])
+  }, [theme])
 
   const handleChangeTheme = () => {
     setTheme(previo => (previo === 'light' ? 'dark' : 'light'))
   }
   return (
     <button onClick={handleChangeTheme} className='text-white ml-2'>
-      {theme === 'light' ? <SvgMoon /> : <SvgSun />}
+      {theme === 'light' ? <Moon /> : <Sun />}
     </button>
   )
 }
