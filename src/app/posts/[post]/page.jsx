@@ -12,7 +12,7 @@ export default async function PostPage({ params }) {
     <>
       <div className='flex py-5 items-center'>
         <Image
-          src={`/${data.image}.png`}
+          src={`/images/${data.image}.png`}
           width={40}
           height={40}
           alt={`image of ${data.image}`}

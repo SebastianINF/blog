@@ -10,7 +10,7 @@ export default function Navbar() {
         <section className='flex items-center px-4 justify-center h-full'>
           <Link href='/'>
             <Image
-              src='/perfil.png'
+              src='/images/perfil.png'
               className='items-center cursor-pointer rounded-full w-[60px] h-[60px] sm:hidden'
               width={60}
               height={60}
