@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Cascadia Code';
-  src: url('/fonts/Cascadia\ Code.ttf') format('truetype');
+  src: url('../../public/fonts/Cascadia\ Code.ttf') format('truetype');
 }
 
 a {
