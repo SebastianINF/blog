@@ -1,4 +1,3 @@
-'use client'
 import Markdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from '@/lib/one-dark'
@@ -16,6 +15,8 @@ import '@/styles/index.css'
 export default function Article({ content }) {
   return (
     <Markdown
+      className='prose dark:prose-invert prose-pre:p-0 prose-pre:bg-transparent
+      prose-p:flex prose-p:flex-wrap prose-img:gap-2 prose-a:mx-1 prose-img:my-2'
       children={content}
       remarkPlugins={[remarkGfm, remarkMath, remarkToc, remarkSlug]}
       rehypePlugins={[rehypeRaw, rehypeKatex, rehypeSlug]}
@@ -25,7 +26,7 @@ export default function Article({ content }) {
           const match = /language-(\w+)/.exec(className || '')
 
           return match ? (
-            <div className='relative my-4' key={window.crypto.randomUUID()}>
+            <div className='relative my-4'>
               <div className='absolute top-1 right-1 -z-0'>
                 <ClipBoardButton code={node.children[0].value} />
               </div>
@@ -42,9 +43,6 @@ export default function Article({ content }) {
               {children}
             </code>
           )
-        },
-        ul: function (props) {
-          return <ul>{props.children}</ul>
         }
       }}
     />

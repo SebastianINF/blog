@@ -1,21 +1,31 @@
 import path from 'node:path'
 import fs from 'node:fs'
 import matter from 'gray-matter'
+import { POST_DIRECTORY } from './constants'
 
-const getData = async post => {
-  const postsDirectory = path.join(process.cwd(), 'posts')
-  const filePath = path.join(postsDirectory, `${post}.md`)
-  if (!fs.existsSync(filePath))
+const getData = () => {
+  const fileNames = fs.readdirSync(POST_DIRECTORY)
+  const allPostsData = fileNames.map(fileName => {
+    // Remove ".md" from file name to get id
+    const id = fileName.replace(/\.md$/, '')
+
+    // Read markdown file as string
+    const fullPath = path.join(POST_DIRECTORY, fileName)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+
+    // Use gray-matter to parse the post metadata section
+    const matterResult = matter(fileContents)
+
+    // Combine the data with the id
     return {
-      exist: false
+      id,
+      content: matterResult.content,
+      ...matterResult.data
     }
-  const markdownContent = fs.readFileSync(filePath, 'utf8')
-  const { data, content } = matter(markdownContent)
-  return {
-    data,
-    content,
-    exist: true
-  }
+  })
+  return allPostsData.sort((a, b) => {
+    return a.date < b.date ?  1: -1
+  })
 }
 
 export default getData

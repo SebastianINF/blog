@@ -2,16 +2,18 @@ import { Inter, Montserrat } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import '@/styles/global.css'
+
+// forma de aplicar fuentes sin tailwind
 const inter = Inter({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-inter' // <-- variable que se puede usar luego en el css
+  weight: ['400'],
+  subsets: ['vietnamese'],
+  variable: '--font-inter' 
 })
 
-const montserrat = Montserrat({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-montserrat' // <-- variable que se puede usar luego en el css
+const monserrat = Montserrat({
+  weight: ['400'],
+  subsets: ['vietnamese'],
+  variable: '--font-montserrat' 
 })
 
 /**
@@ -32,18 +34,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>
-        <link rel="icon" href="/images/perfil.png" sizes="any"/>
+        <link rel="icon" href="/images/perfil.png"/>
       </head>
       <body
-        className={`${inter.variable} ${montserrat.variable} font-montserrat`}
+        className={`${inter.variable} ${monserrat.variable}`}
       >
         <header className='relative mt-32'>
           <Navbar />
         </header>
         <main className='max-w-[48rem] mx-auto px-5'>{children}</main>
-        <footer className='w-screen m-0 flex flex-col min-h-[100vh]'>
+        <div className='w-screen m-0 flex flex-col min-h-[100vh]'>
           <Footer />
-        </footer>
+        </div>
       </body>
     </html>
   )

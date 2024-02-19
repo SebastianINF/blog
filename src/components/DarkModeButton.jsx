@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 import { Moon, Sun } from './icons'
 
@@ -14,11 +13,12 @@ export default function DarkModeButton() {
     }
   }, [theme])
 
-  const handleChangeTheme = () => {
-    setTheme(previo => (previo === 'light' ? 'dark' : 'light'))
+  const toogleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'))
+    document
   }
   return (
-    <button onClick={handleChangeTheme} className='text-white ml-2'>
+    <button onClick={toogleTheme} className='text-white ml-2'>
       {theme === 'light' ? <Moon /> : <Sun />}
     </button>
   )

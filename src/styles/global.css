@@ -13,7 +13,3 @@ html {
 body {
   @apply w-dvw h-dvh items-center dark:text-white dark:bg-custom-black;
 }
-
-p {
-  @apply my-3 text-lg dark:text-white text-pretty;
-}
