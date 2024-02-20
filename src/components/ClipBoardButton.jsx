@@ -23,7 +23,7 @@ export default function ClipBoardButton({ code }) {
       console.log('Código copiado al portapapeles:')
     })
 
-    return clipboard.destroy()
+    return () => clipboard.destroy()
   }, [buttonRef, code])
 
   return (
