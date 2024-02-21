@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  @apply box-border p-0 m-0 font-inter;
+  @apply box-border p-0 m-0;
 }
 
 html {
@@ -13,3 +13,25 @@ html {
 body {
   @apply w-dvw h-dvh items-center dark:text-white dark:bg-custom-black;
 }
+
+a {
+  @apply text-blue-400 hover:text-cyan-400
+}
+
+details > summary {
+  @apply cursor-pointer hover:text-green-400 transition
+}
+
+code:not(:has(*)) {
+  @apply text-white dark:text-white dark:bg-neutral-700 bg-neutral-400 rounded-lg font-bold mx-1 text-center px-1 
+}
+
+
+a:first-child code {
+  @apply text-blue-400 dark:bg-neutral-700 bg-neutral-600 rounded-lg font-bold mx-1 text-center px-1 hover:text-cyan-400
+}
+
+a > code {
+  @apply text-blue-400 dark:bg-neutral-700 bg-neutral-600 rounded-lg font-bold mx-1 text-center px-1 hover:text-cyan-400
+}
+

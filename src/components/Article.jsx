@@ -12,13 +12,28 @@ import rehypeKatex from 'rehype-katex'
 
 import { oneDark } from '@/lib/one-dark'
 import 'katex/dist/katex.min.css'
-import '@/styles/index.css'
 
 export default function Article({ content }) {
   return (
     <Markdown
-      className='prose dark:prose-invert prose-pre:p-0 prose-pre:bg-transparent
-      prose-p:flex prose-p:flex-wrap prose-img:gap-2 prose-a:mx-1 prose-img:my-2 prose-pre:overflow-auto'
+      className='
+      prose
+      dark:prose-invert
+      prose-pre:p-0
+      prose-pre:bg-transparent
+      prose-p:flex
+      prose-p:flex-wrap
+      prose-img:gap-2
+      prose-a:mx-2
+      prose-img:my-2
+      prose-em:mx-2
+      prose-pre:overflow-auto 
+      prose-pre:font-cascadia
+      prose-code:after:hidden
+      prose-code:before:hidden
+    prose-code:text-black
+    prose-a:text-blue-400
+    '
       children={content}
       remarkPlugins={[remarkGfm, remarkMath, remarkToc, remarkSlug]}
       rehypePlugins={[rehypeRaw, rehypeKatex, rehypeSlug]}

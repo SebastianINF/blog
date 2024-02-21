@@ -25,12 +25,7 @@ export default function Navbar() {
           </a>
           <DarkModeButton />
           <li className='px-4'>
-            <Link
-              href='/'
-              className='cursor-pointer dark:hover:text-white hover:text-white'
-            >
-              Layout
-            </Link>
+            <Link href='/'>Layout</Link>
           </li>
         </ul>
       </div>

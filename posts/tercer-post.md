@@ -7,7 +7,7 @@ fecha: '13/1/2024'
 
 # A demo of `react-markdown`
 
-`react-markdown` is a markdown component for React.
+*react-markdown* is a markdown component for React.
 
 👉 Changes are re-rendered as you type.
 

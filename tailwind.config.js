@@ -29,8 +29,8 @@ module.exports = {
       },
       fontFamily: {
         inter: ['var(--font-inter)'],
-        montserrat: ['var(--font-montserrat)'],
-        cascadia: ['Cascadia Code']
+        "roboto-mono": ['var(--font-roboto-mono)'],
+        cascadia: ['Cascadia Code'],
       },
 
       backgroundImage: {

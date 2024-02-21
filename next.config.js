@@ -5,15 +5,13 @@ module.exports = async (phase, { defaultConfig }) => {
   //   return {}
   // }
 
-  /**
-   * @type {import('next').NextConfig} Son los tipo para tener intellisense
-   */
+  /*** @type {import('next').NextConfig} */
   const nextConfig = {
     pageExtensions: ['js', 'ts', 'jsx', 'tsx', 'md', 'mdx'],
+  
     experimental: {
-      // experimental opciones que estan en fase beta todavía
-      instrumentationHook: true
-    }
+      instrumentationHook: true,
+    },
   }
   return nextConfig
 }
