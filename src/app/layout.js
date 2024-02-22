@@ -1,6 +1,7 @@
 import Navbar from '@/components/ui/Navbar'
 import Footer from '@/components/ui/Footer'
-import {inter, robotoMono} from '@/styles/fonts'
+import { Providers } from '@/components/provider/providers'
+import { inter, robotoMono } from '@/styles/fonts'
 import '@/styles/global.css'
 
 // forma de aplicar fuentes sin tailwind
@@ -11,8 +12,7 @@ import '@/styles/global.css'
  */
 export const metadata = {
   title: 'My blog',
-  description:
-    'My personal blog make for me',
+  description: 'My personal blog make for me',
   authors: [{ name: 'Sebastian' }], // varios autores
   creator: 'Sebastian Cespedes Rodas',
   publisher: 'Sebastian'
@@ -21,20 +21,20 @@ export const metadata = {
 // lEER : https://nextjs.org/docs/app/building-your-application/routing
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
+    <html lang='en'  >
       <head>
-        <link rel="icon" href="/svg/perfil.svg"/>
+        <link rel='icon' href='/images/javascript.png' />
       </head>
-      <body
-        className={`${inter.variable} ${robotoMono.variable} font-inter`}
-      >
-        <header className='relative mt-32'>
-          <Navbar />
-        </header>
-        <main className='max-w-[48rem] mx-auto px-10'>{children}</main>
-        <div className='w-screen m-0 flex flex-col min-h-[100vh]'>
-          <Footer />
-        </div>
+      <body className={`${inter.variable} ${robotoMono.variable} font-inter`}>
+        <Providers >
+          <header className='relative mt-32'>
+            <Navbar />
+          </header>
+          <main className='max-w-[48rem] mx-auto px-10'>{children}</main>
+          <div className='w-screen m-0 flex flex-col min-h-[100vh]'>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   )

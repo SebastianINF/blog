@@ -28,9 +28,9 @@ module.exports = {
         'custom-black': '#242424'
       },
       fontFamily: {
-        inter: ['var(--font-inter)'],
-        "roboto-mono": ['var(--font-roboto-mono)'],
         cascadia: ['Cascadia Code'],
+        inter: ['var(--font-inter)'],
+        "roboto-mono": ['var(--font-roboto-mono)']
       },
 
       backgroundImage: {

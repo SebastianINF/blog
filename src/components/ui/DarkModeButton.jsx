@@ -1,22 +1,20 @@
 'use client'
-import { useState, useEffect } from 'react'
+
+import { useTheme } from 'next-themes'
 import { Moon, Sun } from '@/components/icons'
+import { useEffect } from 'react'
 
 export default function DarkModeButton() {
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    if (theme === 'light') {
-      document.querySelector('html').classList.add('dark')
-    } else {
-      document.querySelector('html').classList.remove('dark')
-    }
-  }, [theme])
+  const { theme, setTheme } = useTheme()
 
   const toogleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'))
-    document
+    if (theme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
   }
+
   return (
     <button onClick={toogleTheme} className='text-white ml-2'>
       {theme === 'light' ? <Moon /> : <Sun />}
