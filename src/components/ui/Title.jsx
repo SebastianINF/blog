@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Link } from './icons'
+import { Link } from '@/components/icons'
 
 export default function Title({ id, children, type = 'h1' }) {
   const [isShow, setIsShown] = useState(false)

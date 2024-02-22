@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, createRef } from 'react'
 import ClipboardJS from 'clipboard'
-import { ClipBoard, Check } from './icons'
+import { ClipBoard, Check } from '@/components/icons'
 
 export default function ClipBoardButton({ code }) {
   const buttonRef = createRef()

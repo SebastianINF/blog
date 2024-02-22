@@ -5,356 +5,195 @@ image: 'javascript'
 fecha: '13/1/2024'
 ---
 
-# rehype-katex
+# clipboard.js
 
-[![Build][build-badge]][build]
-[![Coverage][coverage-badge]][coverage]
-[![Downloads][downloads-badge]][downloads]
-[![Size][size-badge]][size]
-[![Sponsors][sponsors-badge]][collective]
-[![Backers][backers-badge]][collective]
-[![Chat][chat-badge]][chat]
+![Build Status](https://github.com/zenorocha/clipboard.js/workflows/build/badge.svg)
+![Killing Flash](https://img.shields.io/badge/killing-flash-brightgreen.svg?style=flat)
 
-**[rehype][]** plugin to render elements with a `language-math` class with
-[KaTeX][].
+> Modern copy to clipboard. No Flash. Just 3kb gzipped.
 
-## Contents
+<a href="https://clipboardjs.com/"><img width="728" src="https://cloud.githubusercontent.com/assets/398893/16165747/a0f6fc46-349a-11e6-8c9b-c5fd58d9099c.png" alt="Demo"></a>
 
-- [rehype-katex](#rehype-katex)
-  - [Contents](#contents)
-  - [What is this?](#what-is-this)
-  - [When should I use this?](#when-should-i-use-this)
-  - [Install](#install)
-  - [Use](#use)
-  - [API](#api)
-    - [`unified().use(rehypeKatex[, options])`](#unifieduserehypekatex-options)
-          - [Parameters](#parameters)
-          - [Returns](#returns)
-    - [`Options`](#options)
-          - [Type](#type)
-  - [Markdown](#markdown)
-  - [HTML](#html)
-  - [CSS](#css)
-  - [Types](#types)
-  - [Compatibility](#compatibility)
-  - [Security](#security)
-  - [Related](#related)
-  - [Contribute](#contribute)
-  - [License](#license)
+## Why
 
-## What is this?
+Copying text to the clipboard shouldn't be hard. It shouldn't require dozens of steps to configure or hundreds of KBs to load. But most of all, it shouldn't depend on Flash or any bloated framework.
 
-This package is a [unified][] ([rehype][]) plugin to render math.
-You can add classes to HTML elements, use fenced code in markdown, or combine
-with [`remark-math`][remark-math] for a `$C$` syntax extension.
-
-## When should I use this?
-
-This project is useful as it renders math with KaTeX at compile time, which
-means that there is no client side JavaScript needed.
-
-A different plugin, [`rehype-mathjax`][rehype-mathjax], does the same but with
-[MathJax][].
+That's why clipboard.js exists.
 
 ## Install
 
-This package is [ESM only][esm].
-In Node.js (version 16+), install with [npm][]:
+You can get it on npm.
 
-```sh
-npm install rehype-katex
+```
+npm install clipboard --save
 ```
 
-In Deno with [`esm.sh`][esmsh]:
+Or if you're not into package management, just [download a ZIP](https://github.com/zenorocha/clipboard.js/archive/master.zip) file.
+
+## Setup
+
+First, include the script located on the `dist` folder or load it from [a third-party CDN provider](https://github.com/zenorocha/clipboard.js/wiki/CDN-Providers).
+
+```html
+<script src="dist/clipboard.min.js"></script>
+```
+
+Now, you need to instantiate it by [passing a DOM selector](https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-selector.html#L18), [HTML element](https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-node.html#L16-L17), or [list of HTML elements](https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-nodelist.html#L18-L19).
 
 ```js
-import rehypeKatex from 'https://esm.sh/rehype-katex@7'
+new ClipboardJS('.btn');
 ```
 
-In browsers with [`esm.sh`][esmsh]:
+Internally, we need to fetch all elements that matches with your selector and attach event listeners for each one. But guess what? If you have hundreds of matches, this operation can consume a lot of memory.
+
+For this reason we use [event delegation](https://stackoverflow.com/questions/1687296/what-is-dom-event-delegation) which replaces multiple event listeners with just a single listener. After all, [#perfmatters](https://twitter.com/hashtag/perfmatters).
+
+# Usage
+
+We're living a _declarative renaissance_, that's why we decided to take advantage of [HTML5 data attributes](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes) for better usability.
+
+### Copy text from another element
+
+A pretty common use case is to copy content from another element. You can do that by adding a `data-clipboard-target` attribute in your trigger element.
+
+The value you include on this attribute needs to match another's element selector.
+
+<a href="https://clipboardjs.com/#example-target"><img width="473" alt="example-2" src="https://cloud.githubusercontent.com/assets/398893/9983467/a4946aaa-5fb1-11e5-9780-f09fcd7ca6c8.png"></a>
 
 ```html
-<script type="module">
-  import rehypeKatex from 'https://esm.sh/rehype-katex@7?bundle'
-</script>
+<!-- Target -->
+<input id="foo" value="https://github.com/zenorocha/clipboard.js.git" />
+
+<!-- Trigger -->
+<button class="btn" data-clipboard-target="#foo">
+  <img src="assets/clippy.svg" alt="Copy to clipboard" />
+</button>
 ```
 
-## Use
+### Cut text from another element
 
-Say our document `input.html` contains:
+Additionally, you can define a `data-clipboard-action` attribute to specify if you want to either `copy` or `cut` content.
+
+If you omit this attribute, `copy` will be used by default.
+
+<a href="https://clipboardjs.com/#example-action"><img width="473" alt="example-3" src="https://cloud.githubusercontent.com/assets/398893/10000358/7df57b9c-6050-11e5-9cd1-fbc51d2fd0a7.png"></a>
 
 ```html
-<p>
-  Lift(<code class="language-math">L</code>) can be determined by Lift Coefficient
-  (<code class="language-math">C_L</code>) like the following equation.
-</p>
-<pre><code class="language-math">
-  L = \frac{1}{2} \rho v^2 S C_L
-</code></pre>
+<!-- Target -->
+<textarea id="bar">Mussum ipsum cacilds...</textarea>
+
+<!-- Trigger -->
+<button class="btn" data-clipboard-action="cut" data-clipboard-target="#bar">
+  Cut to clipboard
+</button>
 ```
 
-…and our module `example.js` contains:
+As you may expect, the `cut` action only works on `<input>` or `<textarea>` elements.
+
+### Copy text from attribute
+
+Truth is, you don't even need another element to copy its content from. You can just include a `data-clipboard-text` attribute in your trigger element.
+
+<a href="https://clipboardjs.com/#example-text"><img width="147" alt="example-1" src="https://cloud.githubusercontent.com/assets/398893/10000347/6e16cf8c-6050-11e5-9883-1c5681f9ec45.png"></a>
+
+```html
+<!-- Trigger -->
+<button
+  class="btn"
+  data-clipboard-text="Just because you can doesn't mean you should — clipboard.js"
+>
+  Copy to clipboard
+</button>
+```
+
+## Events
+
+There are cases where you'd like to show some user feedback or capture what has been selected after a copy/cut operation.
+
+That's why we fire custom events such as `success` and `error` for you to listen and implement your custom logic.
 
 ```js
-import rehypeDocument from 'rehype-document'
-import rehypeKatex from 'rehype-katex'
-import rehypeParse from 'rehype-parse'
-import rehypeStringify from 'rehype-stringify'
-import {read, write} from 'to-vfile'
-import {unified} from 'unified'
+var clipboard = new ClipboardJS('.btn');
 
-const file = await unified()
-  .use(rehypeParse, {fragment: true})
-  .use(rehypeDocument, {
-    // Get the latest one from: <https://katex.org/docs/browser>.
-    css: 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css'
-  })
-  .use(rehypeKatex)
-  .use(rehypeStringify)
-  .process(await read('input.html'))
+clipboard.on('success', function (e) {
+  console.info('Action:', e.action);
+  console.info('Text:', e.text);
+  console.info('Trigger:', e.trigger);
 
-file.basename = 'output.html'
-await write(file)
+  e.clearSelection();
+});
+
+clipboard.on('error', function (e) {
+  console.error('Action:', e.action);
+  console.error('Trigger:', e.trigger);
+});
 ```
 
-…then running `node example.js` creates an `output.html` with:
+For a live demonstration, go to this [site](https://clipboardjs.com/) and open your console.
 
-```html
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>input</title>
-<meta content="width=device-width, initial-scale=1" name="viewport">
-<link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet">
-</head>
-<body>
-<p>
-  Lift(<span class="katex"><!--…--></span>) can be determined by Lift Coefficient
-  (<span class="katex"><!--…--></span>) like the following equation.
-</p>
-<span class="katex-display"><!--…--></span>
-</body>
-</html>
-```
+## Tooltips
 
-…open `output.html` in a browser to see the rendered math.
+Each application has different design needs, that's why clipboard.js does not include any CSS or built-in tooltip solution.
 
-## API
+The tooltips you see on the [demo site](https://clipboardjs.com/) were built using [GitHub's Primer](https://primer.style/css/components/tooltips). You may want to check that out if you're looking for a similar look and feel.
 
-This package exports no identifiers.
-The default export is [`rehypeKatex`][api-rehype-katex].
+## Advanced Options
 
-### `unified().use(rehypeKatex[, options])`
+If you don't want to modify your HTML, there's a pretty handy imperative API for you to use. All you need to do is declare a function, do your thing, and return a value.
 
-Render elements with a `language-math` (or `math-display`, `math-inline`)
-class with [KaTeX][].
-
-###### Parameters
-
-*   `options` ([`Options`][api-options])
-    — configuration
-
-###### Returns
-
-Transform ([`Transformer`][unified-transformer]).
-
-### `Options`
-
-Configuration (TypeScript type).
-
-###### Type
-
-```ts
-import {KatexOptions} from 'katex'
-
-type Options = Omit<KatexOptions, 'displayMode' | 'throwOnError'>
-```
-
-See [*Options* on `katex.org`][katex-options] for more info.
-
-## Markdown
-
-This plugin supports the syntax extension enabled by
-[`remark-math`][remark-math].
-It also supports math generated by using fenced code:
-
-````markdown
-```math
-C_L
-```
-````
-
-## HTML
-
-The content of any element with a `language-math`, `math-inline`, or
-`math-display` class is transformed.
-The elements are replaced by what KaTeX renders.
-Either a `math-display` class or using `<pre><code class="language-math">` will
-result in “display” math: math that is a centered block on its own line.
-
-## CSS
-
-The HTML produced by KaTeX requires CSS to render correctly.
-You should use `katex.css` somewhere on the page where the math is shown to
-style it properly.
-At the time of writing, the last version is:
-
-```html
-<!-- Get the latest one from: https://katex.org/docs/browser -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-```
-
-## Types
-
-This package is fully typed with [TypeScript][].
-It exports the additional type [`Options`][api-options].
-
-## Compatibility
-
-Projects maintained by the unified collective are compatible with maintained
-versions of Node.js.
-
-When we cut a new major release, we drop support for unmaintained versions of
-Node.
-This means we try to keep the current release line, `rehype-katex@^7`,
-compatible with Node.js 16.
-
-This plugin works with unified version 6+ and rehype version 4+.
-
-## Security
-
-Assuming you trust KaTeX, using `rehype-katex` is safe.
-A vulnerability in it could open you to a
-[cross-site scripting (XSS)][wiki-xss] attack.
-Be wary of user input and use [`rehype-sanitize`][rehype-sanitize].
-
-When you don’t trust user content but do trust KaTeX, run `rehype-katex`
-*after* `rehype-sanitize`:
+For instance, if you want to dynamically set a `target`, you'll need to return a Node.
 
 ```js
-import rehypeKatex from 'rehype-katex'
-import rehypeSanitize, {defaultSchema} from 'rehype-sanitize'
-import rehypeStringify from 'rehype-stringify'
-import remarkMath from 'remark-math'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import {unified} from 'unified'
-
-const file = await unified()
-  .use(remarkParse)
-  .use(remarkMath)
-  .use(remarkRehype)
-  .use(rehypeSanitize, {
-    ...defaultSchema,
-    attributes: {
-      ...defaultSchema.attributes,
-      // The `language-*` regex is allowed by default.
-      code: [['className', /^language-./, 'math-inline', 'math-display']]
-    }
-  })
-  .use(rehypeKatex)
-  .use(rehypeStringify)
-  .process('$C$')
-
-console.log(String(file))
+new ClipboardJS('.btn', {
+  target: function (trigger) {
+    return trigger.nextElementSibling;
+  },
+});
 ```
 
-## Related
+If you want to dynamically set a `text`, you'll return a String.
 
-*   [`rehype-mathjax`][rehype-mathjax]
-    — same but with MathJax
-*   [`rehype-highlight`](https://github.com/rehypejs/rehype-highlight)
-    — highlight code blocks
-*   [`rehype-autolink-headings`](https://github.com/rehypejs/rehype-autolink-headings)
-    — add links to headings
-*   [`rehype-sanitize`](https://github.com/rehypejs/rehype-sanitize)
-    — sanitize HTML
-*   [`rehype-document`](https://github.com/rehypejs/rehype-document)
-    — wrap a document around the tree
+```js
+new ClipboardJS('.btn', {
+  text: function (trigger) {
+    return trigger.getAttribute('aria-label');
+  },
+});
+```
 
-## Contribute
+For use in Bootstrap Modals or with any other library that changes the focus you'll want to set the focused element as the `container` value.
 
-See [`contributing.md`][contributing] in [`remarkjs/.github`][health] for ways
-to get started.
-See [`support.md`][support] for ways to get help.
+```js
+new ClipboardJS('.btn', {
+  container: document.getElementById('modal'),
+});
+```
 
-This project has a [code of conduct][coc].
-By interacting with this repository, organization, or community you agree to
-abide by its terms.
+Also, if you are working with single page apps, you may want to manage the lifecycle of the DOM more precisely. Here's how you clean up the events and objects that we create.
+
+```js
+var clipboard = new ClipboardJS('.btn');
+clipboard.destroy();
+```
+
+## Browser Support
+
+This library relies on both [Selection](https://developer.mozilla.org/en-US/docs/Web/API/Selection) and [execCommand](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand) APIs. The first one is [supported by all browsers](https://caniuse.com/#search=selection) while the second one is supported in the following browsers.
+
+| <img src="https://clipboardjs.com/assets/images/chrome.png" width="48px" height="48px" alt="Chrome logo"> | <img src="https://clipboardjs.com/assets/images/edge.png" width="48px" height="48px" alt="Edge logo"> | <img src="https://clipboardjs.com/assets/images/firefox.png" width="48px" height="48px" alt="Firefox logo"> | <img src="https://clipboardjs.com/assets/images/ie.png" width="48px" height="48px" alt="Internet Explorer logo"> | <img src="https://clipboardjs.com/assets/images/opera.png" width="48px" height="48px" alt="Opera logo"> | <img src="https://clipboardjs.com/assets/images/safari.png" width="48px" height="48px" alt="Safari logo"> |
+| :-------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+|                                                   42+ ✔                                                   |                                                 12+ ✔                                                 |                                                    41+ ✔                                                    |                                                       9+ ✔                                                       |                                                  29+ ✔                                                  |                                                   10+ ✔                                                   |
+
+The good news is that clipboard.js gracefully degrades if you need to support older browsers. All you have to do is show a tooltip saying `Copied!` when `success` event is called and `Press Ctrl+C to copy` when `error` event is called because the text is already selected.
+
+You can also check if clipboard.js is supported or not by running `ClipboardJS.isSupported()`, that way you can hide copy/cut buttons from the UI.
+
+## Bonus
+
+A browser extension that adds a "copy to clipboard" button to every code block on _GitHub, MDN, Gist, StackOverflow, StackExchange, npm, and even Medium._
+
+Install for [Chrome](https://chrome.google.com/webstore/detail/codecopy/fkbfebkcoelajmhanocgppanfoojcdmg) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/codecopy/).
 
 ## License
 
-[MIT][license] © [Junyoung Choi][author]
-
-<!-- Definitions -->
-
-[build-badge]: https://github.com/remarkjs/remark-math/workflows/main/badge.svg
-
-[build]: https://github.com/remarkjs/remark-math/actions
-
-[coverage-badge]: https://img.shields.io/codecov/c/github/remarkjs/remark-math.svg
-
-[coverage]: https://codecov.io/github/remarkjs/remark-math
-
-[downloads-badge]: https://img.shields.io/npm/dm/rehype-katex.svg
-
-[downloads]: https://www.npmjs.com/package/rehype-katex
-
-[size-badge]: https://img.shields.io/bundlejs/size/rehype-katex
-
-[size]: https://bundlejs.com/?q=rehype-katex
-
-[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
-
-[backers-badge]: https://opencollective.com/unified/backers/badge.svg
-
-[collective]: https://opencollective.com/unified
-
-[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
-
-[chat]: https://github.com/remarkjs/remark/discussions
-
-[npm]: https://docs.npmjs.com/cli/install
-
-[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
-
-[esmsh]: https://esm.sh
-
-[health]: https://github.com/remarkjs/.github
-
-[contributing]: https://github.com/remarkjs/.github/blob/main/contributing.md
-
-[support]: https://github.com/remarkjs/.github/blob/main/support.md
-
-[coc]: https://github.com/remarkjs/.github/blob/main/code-of-conduct.md
-
-[license]: https://github.com/remarkjs/remark-math/blob/main/license
-
-[author]: https://rokt33r.github.io
-
-[katex]: https://github.com/Khan/KaTeX
-
-[katex-options]: https://katex.org/docs/options.html
-
-[rehype]: https://github.com/rehypejs/rehype
-
-[rehype-sanitize]: https://github.com/rehypejs/rehype-sanitize
-
-[unified]: https://github.com/unifiedjs/unified
-
-[unified-transformer]: https://github.com/unifiedjs/unified#transformer
-
-[typescript]: https://www.typescriptlang.org
-
-[wiki-xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
-
-[mathjax]: https://www.mathjax.org
-
-[remark-math]: ../remark-math/
-
-[rehype-mathjax]: ../rehype-mathjax/
-
-[api-options]: #options
-
-[api-rehype-katex]: #unifieduserehypekatex-options
+[MIT License](https://zenorocha.mit-license.org/) © Zeno Rocha

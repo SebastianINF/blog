@@ -1,7 +1,7 @@
-import Article from '@/components/Article'
-import getData from '@/lib/getData'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
+import Article from '@/components/ui/Article'
+import getData from '@/lib/getData'
 
 export default function PostPage({ params }) {
   const data = getData()

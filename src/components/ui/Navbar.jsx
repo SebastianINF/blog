@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import DarkModeButton from './DarkModeButton'
-import { GitHub } from './icons'
+import { GitHub } from '@/components/icons'
 
 export default function Navbar() {
   return (
@@ -14,7 +14,6 @@ export default function Navbar() {
               className='items-center cursor-pointer rounded-full w-[60px] h-[60px] sm:hidden'
               width={60}
               height={60}
-              quality={100}
               alt='image of perfil'
             />
           </Link>

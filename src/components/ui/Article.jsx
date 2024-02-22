@@ -19,19 +19,33 @@ export default function Article({ content }) {
       className='
       prose
       dark:prose-invert
-      prose-pre:p-0
-      prose-pre:bg-transparent
-      prose-p:flex
-      prose-p:flex-wrap
       prose-img:gap-2
       prose-a:mx-2
       prose-img:my-2
       prose-em:mx-2
+
+      prose-p:flex
+      prose-p:flex-wrap
+
+
+      prose-pre:p-0
+      prose-pre:bg-transparent
       prose-pre:overflow-auto 
       prose-pre:font-cascadia
+
       prose-code:after:hidden
       prose-code:before:hidden
-    prose-code:text-black
+      empty:prose-code:text-blue-400 
+     dark:empty:prose-code:bg-neutral-700
+      empty:prose-code:bg-neutral-400
+      empty:prose-code:rounded-lg
+      empty:prose-code:font-bold
+      empty:prose-code:mx-1 
+      empty:prose-code:text-center
+      empty:prose-code:px-1
+      has-[a]:prose-code:text-black
+      dark:has-[a]:prose-code:text-white
+
     prose-a:text-blue-400
     '
       children={content}
@@ -132,6 +146,10 @@ export default function Article({ content }) {
               {children}
             </Title>
           )
+        },
+        img: function (props) {
+          const { src, alt, width } = props
+          return <img src={src} alt={alt} width={width} loading='lazy' />
         }
       }}
     />

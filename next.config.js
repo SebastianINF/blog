@@ -8,10 +8,20 @@ module.exports = async (phase, { defaultConfig }) => {
   /*** @type {import('next').NextConfig} */
   const nextConfig = {
     pageExtensions: ['js', 'ts', 'jsx', 'tsx', 'md', 'mdx'],
-  
-    experimental: {
-      instrumentationHook: true,
+
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: '*',
+          port: '',
+        }
+      ]
     },
+
+    experimental: {
+      instrumentationHook: true
+    }
   }
   return nextConfig
 }

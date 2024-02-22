@@ -1,4 +1,4 @@
-import LinkItem from '@/components/LinkItem'
+import LinkItem from '@/components/ui/LinkItem'
 import getData from '@/lib/getData'
 
 export default function Home() {

@@ -23,15 +23,5 @@ details > summary {
 }
 
 code:not(:has(*)) {
-  @apply text-white dark:text-white dark:bg-neutral-700 bg-neutral-400 rounded-lg font-bold mx-1 text-center px-1 
+  @apply bg-neutral-400 dark:bg-neutral-400 dark:bg-neutral-700 text-center mx-1 px-1 rounded-lg pt-[2px]
 }
-
-
-a:first-child code {
-  @apply text-blue-400 dark:bg-neutral-700 bg-neutral-600 rounded-lg font-bold mx-1 text-center px-1 hover:text-cyan-400
-}
-
-a > code {
-  @apply text-blue-400 dark:bg-neutral-700 bg-neutral-600 rounded-lg font-bold mx-1 text-center px-1 hover:text-cyan-400
-}
-

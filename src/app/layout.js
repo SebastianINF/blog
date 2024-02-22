@@ -1,5 +1,5 @@
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import Navbar from '@/components/ui/Navbar'
+import Footer from '@/components/ui/Footer'
 import {inter, robotoMono} from '@/styles/fonts'
 import '@/styles/global.css'
 
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>
-        <link rel="icon" href="/images/perfil.png"/>
+        <link rel="icon" href="/svg/perfil.svg"/>
       </head>
       <body
         className={`${inter.variable} ${robotoMono.variable} font-inter`}
