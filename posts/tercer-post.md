@@ -2,7 +2,7 @@
 title: 'Tercer post'
 description: 'mi tercer post'
 image: 'javascript'
-fecha: '13/1/2024'
+date: '13/1/2024'
 ---
 
 # A demo of `react-markdown`

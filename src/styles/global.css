@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('/fonts/Cascadia%20Code.ttf');
+
 * {
   @apply box-border p-0 m-0;
 }
@@ -12,10 +14,6 @@ html {
 
 body {
   @apply w-dvw h-dvh items-center dark:text-white dark:bg-custom-black;
-}
-
-span {
-  @apply font-cascadia
 }
 
 a {

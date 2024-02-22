@@ -2,7 +2,6 @@
 
 import { useTheme } from 'next-themes'
 import { Moon, Sun } from '@/components/icons'
-import { useEffect } from 'react'
 
 export default function DarkModeButton() {
   const { theme, setTheme } = useTheme()

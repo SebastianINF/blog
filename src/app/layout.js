@@ -1,6 +1,6 @@
 import Navbar from '@/components/ui/Navbar'
 import Footer from '@/components/ui/Footer'
-import { Providers } from '@/components/provider/providers'
+import { Providers } from '@/components/provider/Providers'
 import { inter, robotoMono } from '@/styles/fonts'
 import '@/styles/global.css'
 
@@ -21,7 +21,7 @@ export const metadata = {
 // lEER : https://nextjs.org/docs/app/building-your-application/routing
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'  >
+    <html lang='en' suppressHydrationWarning >
       <head>
         <link rel='icon' href='/images/javascript.png' />
       </head>

@@ -2,7 +2,7 @@
 title: 'Segundo Post'
 description: 'Descripción del segundo post'
 image: 'javascript'
-fecha: '13/1/2024'
+date: '13/1/2024'
 ---
 
 # clipboard.js

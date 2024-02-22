@@ -26,12 +26,11 @@ export default function Article({ content }) {
 
       prose-p:flex
       prose-p:flex-wrap
-
+      prose-pre:font-cascadia
 
       prose-pre:p-0
       prose-pre:bg-transparent
       prose-pre:overflow-auto 
-      prose-pre:font-cascadia
 
       prose-code:after:hidden
       prose-code:before:hidden
